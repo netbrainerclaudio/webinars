@@ -1,0 +1,11 @@
+---
+#Ansible Playbook to retrieve Cisco IOS interface configuration
+
+- name: Set Cisco IOS Interface Description
+  hosts: cisco_routers
+  
+  tasks:
+    - name: Parse the commands for provided configuration
+      cisco.ios.ios_interfaces:
+        running_config: "{{ lookup('file', 'parsed.cfg') }}"
+        state: parsed
